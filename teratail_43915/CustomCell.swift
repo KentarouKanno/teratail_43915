@@ -16,7 +16,7 @@ class CustomCell: UITableViewCell {
     
     var personal: PersonalData! {
         didSet {
-            self.nameLabel.text    = personal.name
+            self.nameLabel.text    = personal.name + ", id = " + String(personal.id)
             self.ageLabel.text     = String(personal.age)
             self.addressLabel.text = personal.address
         }

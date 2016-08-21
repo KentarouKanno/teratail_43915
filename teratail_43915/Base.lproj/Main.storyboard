@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="95" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mlv-vX-pG9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="95" id="m4R-1g-Pg2" customClass="CustomCell" customModule="teratail_43915" customModuleProvider="target">
@@ -121,13 +121,40 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="hfA-lD-TtU"/>
                                 </connections>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WOG-b8-kMJ">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="1yd-QW-OAO"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Update" id="0xZ-JB-tZV">
+                                        <connections>
+                                            <action selector="update:" destination="BYZ-38-t0r" id="l9V-2B-tDr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="7tq-Lv-rUz"/>
+                                    <barButtonItem title="DataClear" id="HtH-94-Iu7">
+                                        <connections>
+                                            <action selector="clearTable:" destination="BYZ-38-t0r" id="Y2R-sh-w1f"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="ResetAutoIncrement" id="LNa-UG-s1P">
+                                        <connections>
+                                            <action selector="resetIncrement:" destination="BYZ-38-t0r" id="cqr-Hz-7Fy"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mlv-vX-pG9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="2QX-GN-TD8"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mlv-vX-pG9" secondAttribute="bottom" id="CbC-lt-3EB"/>
+                            <constraint firstAttribute="trailing" secondItem="WOG-b8-kMJ" secondAttribute="trailing" id="69d-st-Mqo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WOG-b8-kMJ" secondAttribute="bottom" id="9y5-qk-45D"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mlv-vX-pG9" secondAttribute="bottom" constant="44" id="CbC-lt-3EB"/>
                             <constraint firstItem="mlv-vX-pG9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="b2O-4i-6Fl"/>
                             <constraint firstAttribute="trailing" secondItem="mlv-vX-pG9" secondAttribute="trailing" id="gQR-Xb-8LQ"/>
+                            <constraint firstItem="WOG-b8-kMJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vUl-Zm-mfY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ViewController" id="adJ-Rj-Gvm"/>

@@ -15,19 +15,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !NSUserDefaults.standardUserDefaults().boolForKey("CSVReadFlg") {
-            
-            // Create Table
-            DataBaseManager.sharedInstance.createPersonalDataBase()
-            
-            // Bundle CSV → DataBase
-            if let personalData = CSVManager.readBundleCSVData() {
-                for  data in personalData {
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CSVReadFlg")
-                    DataBaseManager.sharedInstance.insertPersonalData(data)
-                }
-            }
-        }
+        
+        
+        // Create Table
+        DataBaseManager.sharedInstance.createPersonalDataBase()
+        
+        readCSVToDataBase()
         
         // DataBase → TableView Data
         dataArray = DataBaseManager.sharedInstance.selectPersonalAllData()
@@ -35,6 +28,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 20
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    func readCSVToDataBase() {
+        
+        // Bundle CSV → DataBase
+        if let personalData = CSVManager.readBundleCSVData() {
+            for  data in personalData {
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "CSVReadFlg")
+                DataBaseManager.sharedInstance.insertPersonalData(data)
+            }
+        }
     }
     
     // Data Array
@@ -58,5 +62,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         print("Cell Tap - ",indexPath.row)
+    }
+    
+    @IBAction func resetIncrement(sender: UIBarButtonItem) {
+        DataBaseManager.sharedInstance.resetAutoIncrement()
+    }
+    
+    @IBAction func clearTable(sender: UIBarButtonItem) {
+        DataBaseManager.sharedInstance.deleteAllPersonalData()
+        
+        readCSVToDataBase()
+        dataArray = DataBaseManager.sharedInstance.selectPersonalAllData()
+        tableView.reloadData()
+        
+    }
+    @IBAction func update(sender: UIBarButtonItem) {
+        
+        let data = PersonalData()
+        data.name = "UpdateName"
+        data.age = 33
+        data.address = "Hokkaido"
+        DataBaseManager.sharedInstance.updatePersonalData(data, updateData: dataArray[dataArray.count - 1])
+        
+        
+        dataArray = DataBaseManager.sharedInstance.selectPersonalAllData()
+        tableView.reloadData()
     }
 }

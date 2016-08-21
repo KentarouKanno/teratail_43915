@@ -12,6 +12,7 @@ class PersonalData {
     var name   : String!
     var age    : Int!
     var address: String!
+    var id     : Int = 0
     
     func setDataFromArray(dataArray: Array<String>) {
         
@@ -24,5 +25,4 @@ class PersonalData {
             }
         }
     }
-    
 }
